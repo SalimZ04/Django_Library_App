@@ -1,0 +1,9 @@
+<body>
+{% include 'etudiant/navbar.html' %}
+
+<ul>
+    {% for formation in Formations %}
+    <a class="btn btn-warning" href="listethese/{{formation.0}}">{{formation.1}}</a><br>
+    {% endfor %}
+</ul>
+</body>

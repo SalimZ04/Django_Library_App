@@ -1,0 +1,87 @@
+{% load static %}
+{% static "fichiers/" as baseUrl %}
+
+<script>
+    function resetIfInvalid(el){
+       //just for beeing sure that nothing is done if no value selected
+       if (el.value == "")
+           return;
+       var options = el.list.options;
+       for (var i = 0; i< options.length; i++) {
+           if (el.value == options[i].value)
+               //option matches: work is done
+               return;
+       }
+       //no match was found: reset the value
+       el.value = "";
+    }
+</script>
+
+{% include 'etudiant/navbar.html' %}
+
+
+<div class="container">
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <label> Titre: 
+        <input list="titre" name="titre"  autocomplete="off" class="form-control" id="">
+        <datalist  id="titre" >
+
+            {% for these in theses %}
+                <option value="{{these.5}}" >{{these.5}}</option>
+            {% endfor %}
+    
+        </datalist>
+  
+    </label>
+
+
+<br>
+    <label> Nom de l'encadrant: 
+        <input list="encadrent" name="encadrent"  autocomplete="off" class="form-control" id="">
+        <datalist  id="encadrent" >
+            {% for encadrent in encadrents %}
+                <option value="{{encadrent.1}}" >{{encadrent.1}}</option>
+            {% endfor %}
+    
+        </datalist>
+
+    </label>
+
+<br><br>
+       <input class="btn btn-outline-danger" type="submit" value="search" >
+    <a class="btn btn-outline-primary" href="/etudiant/home">Retour</a>
+    <br>
+
+
+</form>
+
+<br>
+<table class="table">
+        <thead>
+         <tr>
+
+          <th  scope="col">Titre</th>
+         <th  scope="col">Encadrent</th>
+         <th  scope="col">Etudiant</th>
+        </tr>
+        </thead>
+       <tbody>
+    {% for these in theses %}
+
+       <tr>
+         <td scope="col">{{these.5}}</td>
+          <td scope="col">{{these.4}}</td>
+        <td scope="col">{{these.3}}</td>
+         <td scope="col"><a class="btn btn-outline-danger" href="/etudiant/these/{{these.0}}">Voir les details</a></td>
+         <td scope="col"><a class="btn btn-outline-primary" href="{{baseUrl}}/{{these.6}}">Consulter la these</a></td>
+     </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<!--
+{{baseUrl}}/{{Utilisateur.Photo}}
+{% load static %}
+{% static "images/" as baseUrl %} -->
+    </div>

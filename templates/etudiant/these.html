@@ -1,0 +1,23 @@
+{% load static %}
+{% static "fichiers/" as baseUrl %}
+
+{% include 'etudiant/navbar.html' %}
+
+<a class=" btn btn-outline-primary" href="/etudiant/listethese/{{these.7}}">Retour</a><br>
+<table class="table">
+     <tr>
+          <td>id:{{these.0}} </td><br>
+         <td>Nom complet D'etudiant:{{these.1}}<br></td>
+         <td>Nom complet prof:{{these.2}}<br><br></td>
+         <td>Titre:{{these.3}}<br></td>
+         <td>Date:{{these.4}}<br></td>
+         <td>Duree:{{these.5}}<br></td>
+         <td>Contenu:{{these.6}}<br></td>
+
+</tr>
+
+
+
+
+</table>
+<a class="btn btn-outline-primary" href="{{baseUrl}}/{{these.6}}">Consulter la these</a>
